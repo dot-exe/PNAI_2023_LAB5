@@ -1,7 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from datetime import date
 import uuid
+
 
 # Create your models here.
 
@@ -62,6 +64,12 @@ class InstancjaKsiazki(models.Model):
 
     def __str__(self):
         return '{0} ({1})'.format(self.id, self.ksiazka.tytul)
+
+    @property
+    def przetrzymana(self):
+        if self.data_zwrotu and date.today() > self.data_zwrotu:
+            return True
+        return False
 
 
 class Autor(models.Model):
