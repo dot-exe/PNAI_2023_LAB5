@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %} 
+{% block content %}
+<h1>Pozyczone ksiazki</h1>
+{% if instancjaksiazki_list %}
+<ul>
+    {% for ik in instancjaksiazki_list %}
+    <li class="{% if ik.data_zwrotu %} text-danger {% endif %}">
+        <a href="{% url 'ksiazka-detail' ik.ksiazka.pk %}">
+            ({{ ik.data_zwrotu }})
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Jeszcze nic nie pozyczalismy</p>
+{% endif %} 
+{% endblock %}
