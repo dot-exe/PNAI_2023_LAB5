@@ -4,10 +4,12 @@
 {% if instancjaksiazki_list %}
 <ul>
     {% for ik in instancjaksiazki_list %}
-    <li class="{% if ik.data_zwrotu %} text-danger {% endif %}">
+    <li class="{% if ik.przetrzymana %} text-danger {% endif %}">
         <a href="{% url 'ksiazka-detail' ik.ksiazka.pk %}">
-            ({{ ik.data_zwrotu }})
+            {{ ik.ksiazka.tytul }}
         </a>
+        ({{ ik.data_zwrotu }})
+        <a href="{% url 'prolonguj-ksiazka-bibliotekarz' ik.id %}">Prolonguj</a>
     </li>
     {% endfor %}
 </ul>
